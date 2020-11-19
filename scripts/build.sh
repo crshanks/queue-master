@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -ev
+set -v
 
 SCRIPT_DIR=$(dirname "$0")
 
@@ -26,6 +26,6 @@ $DOCKER_CMD run --rm -v $HOME/.m2:/root/.m2 -v $CODE_DIR:/usr/src/mymaven -w /us
 cp $CODE_DIR/target/*.jar $CODE_DIR/docker/$(basename $CODE_DIR)
 
 for m in ./docker/*/; do
-    REPO=${GROUP}/$(basename $m)
+    REPO=${GROUP}/$(basename sock-shop-queue-master-nr)
     $DOCKER_CMD build -t ${REPO}:${COMMIT} $CODE_DIR/$m;
 done;
